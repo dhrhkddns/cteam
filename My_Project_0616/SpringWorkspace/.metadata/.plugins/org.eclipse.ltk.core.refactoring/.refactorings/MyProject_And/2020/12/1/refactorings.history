@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.hanul.app.command.AnLogindCommand&apos; to &apos;AnLoginCommand&apos;&#x0D;&#x0A;- Original project: &apos;MyProject_And&apos;&#x0D;&#x0A;- Original element: &apos;com.hanul.app.command.AnLogindCommand&apos;&#x0D;&#x0A;- Renamed element: &apos;com.hanul.app.command.AnLoginCommand&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AnLogindCommand&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hanul.app.command{AnLogindCommand.java[AnLogindCommand" matchStrategy="1" name="AnLoginCommand" qualified="false" references="true" similarDeclarations="false" stamp="1609213035904" textual="false" version="1.0"/>
+</session>

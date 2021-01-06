@@ -1,0 +1,21 @@
+package com.hanul.gwangun;
+
+import java.text.SimpleDateFormat;
+
+import org.springframework.ui.Model;
+
+@Controller
+public class TestController {
+	
+	@RequestMapping("/first")
+	public String aaaaaa(Model model) {
+		/*String today
+		= new SimpleDateFormat("yyyy≥‚ MM¿œ dd¿œ")
+							.format(new Date());
+		model.addAttribut
+		*/
+		model.add
+		
+		return 
+	}
+}

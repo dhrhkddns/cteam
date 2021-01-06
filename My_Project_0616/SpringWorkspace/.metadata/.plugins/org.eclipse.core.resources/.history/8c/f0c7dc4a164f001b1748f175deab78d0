@@ -1,0 +1,7 @@
+
+
+Controller 생성후
+
+1. @Controller 지정
+2. 요청에 대한 매핑을 한다.
+   메소드 선언: @RequestMapping("요청uri");

@@ -1,0 +1,17 @@
+package com.hanul.app.command;
+
+public class AnLoginCommand {
+
+	@Override
+	public void execute(Model model) {
+		
+		String id = (String) model.asMap().get("id");
+		String passwd = (String) model.asMap().get("passwd");
+		
+		AnDao adao = new AnDao();
+		
+		
+	}//class
+	
+	
+}//class

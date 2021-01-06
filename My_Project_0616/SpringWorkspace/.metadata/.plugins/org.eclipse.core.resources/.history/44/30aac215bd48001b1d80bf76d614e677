@@ -1,0 +1,23 @@
+package com.hanul.app.dao;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class AnDao {
+
+	DataSource dataSource;
+
+	public AnDao() {
+		try {
+			Context context = new InitialContext();
+			dataSource = (DataSource) context.lookup("java:/comp/env/team01");
+			/*dataSource = (DataSource) context.lookup("java:/comp/env/CSS");*/
+		} catch (NamingException e) {
+			e.getMessage();
+		}
+
+	}//AnDao()
+	
+}//class

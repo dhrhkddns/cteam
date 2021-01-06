@@ -1,0 +1,118 @@
+package com.hanul.app.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import com.hanul.app.dto.MemberDTO;
+
+public class AnDao {
+
+	DataSource dataSource;
+
+	public AnDao() {
+		try {
+			Context context = new InitialContext();
+			dataSource = (DataSource) context.lookup("java:/comp/env/ateam");
+			/* dataSource = (DataSource) context.lookup("java:/comp/env/CSS"); */
+		} catch (NamingException e) {
+			e.getMessage();
+		}
+
+	}
+	
+	public MemberDTO anLogin(String idin, String passwdin) {
+		
+		MemberDTO adto = null;
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * "					
+					+ " from member" 
+					+ " where id = '" + idin + "' and passwd = '" + passwdin + "' ";
+			prepareStatement = connection.prepareStatement(query);
+			resultSet = prepareStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				String id = resultSet.getString("id");
+				String name = resultSet.getString("name");
+				String phonenumber = resultSet.getString("phonenumber");
+				String address = resultSet.getString("address");
+				
+				adto = new MemberDTO(id, name, phonenumber, address);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(resultSet != null) {
+					resultSet.close();
+				}
+				if(prepareStatement != null) {
+					prepareStatement.close();
+				}
+				if(connection != null) {
+					connection.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+			
+		}
+		return adto;
+ 	}
+	
+
+	public int anJoin(String id, String passwd, String name, String phonenumber, String address) {
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		int state = -100;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "insert into member(id, passwd, name, phonenumber, address) " + 
+			               "values('" + id + "', '" + passwd + "', '" + name + "', '" + 
+					        			phonenumber + "', '" + address + "' )";
+			prepareStatement = connection.prepareStatement(query);
+			state = prepareStatement.executeUpdate();
+			
+			if (state > 0) {
+				System.out.println(state + "»ðÀÔ¼º°ø");			
+			} else {
+				System.out.println(state + "»ðÀÔ½ÇÆÐ");
+			}
+			
+		} catch (Exception e) {			
+			System.out.println(e.getMessage());
+		} finally {
+			try {				
+				if (prepareStatement != null) {
+					prepareStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}	
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+
+			}
+		}
+		
+		return state;		
+	}
+
+}

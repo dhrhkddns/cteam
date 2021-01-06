@@ -1,0 +1,10 @@
+package com.hanul.app.command;
+
+import org.springframework.ui.Model;
+
+public class AnJoinCommand implements AnCommand {
+	public void execute(Model model) {
+		
+	}
+
+}
